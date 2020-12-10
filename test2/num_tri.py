@@ -5,8 +5,6 @@ def contnum(n):
     # outer loop to handle number of rows
     for i in range(0, n):
 
-        # not re assigning num
-        # num = 1
 
         # inner loop to handle number of columns
         # values changing acc. to outer loop
@@ -19,7 +17,6 @@ def contnum(n):
 
         # ending line after each row
         print("\r")
-
 
 n = 5
 
