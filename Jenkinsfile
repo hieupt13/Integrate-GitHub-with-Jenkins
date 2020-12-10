@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "hieupt13/Integrate-GitHub-with-Jenkins"
+    registry = "996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
     registryCredential = 'docker-creds'
     dockerImage = ''
   }
@@ -21,7 +21,7 @@ pipeline {
 
     stage('Test Mkdocs' ) {
                 agent {
-                docker { image 'hieupt13/Integrate-GitHub-with-Jenkins:$BUILD_NUMBER' }
+                docker { image '996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image:$BUILD_NUMBER' }
             }
             steps {
                 sh 'mkdocs --version'
@@ -32,7 +32,7 @@ pipeline {
     stage('Deploy Image') {
       steps{
         script {
-          docker.withRegistry( '', registryCredential ) {
+          docker.withRegistry("https://" + registry, "ecr:us-east-1:" + registryCredential) {
             dockerImage.push()
           }
         }
