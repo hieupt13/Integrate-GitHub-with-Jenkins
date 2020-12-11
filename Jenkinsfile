@@ -1,8 +1,11 @@
 pipeline {
   environment {
-    registry = "996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
-    registryCredential = 'docker-creds'
-    dockerImage = ''
+    project = "testdocker"
+    version = "${BUILD_NUMBER}"
+    docker_image = "$project:$version"
+    awsurl = "https://996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
+    awsCred = 'ecr:us-east-1:awscredential'
+
   }
   agent any
   stages {
@@ -14,7 +17,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
+          dockerImage = docker.build ('$docker_image')
         }
       }
     }
@@ -29,18 +32,18 @@ pipeline {
         }
 
 
-    stage('Deploy Image') {
+    stage('Push Image') {
       steps{
         script {
-          docker.withRegistry("https://" + registry, "ecr:us-east-1:" + registryCredential) {
-            dockerImage.push()
+          docker.withRegistry(awsurl,awsCred) {
+            docker.image(docker_image).push()
           }
         }
       }
     }
     stage('Remove Unused docker image') {
       steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
+        sh "docker rmi $docker_image"
       }
     }
   }
