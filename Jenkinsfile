@@ -1,10 +1,10 @@
 pipeline {
   environment {
-    project = "testdocker"
+    project = "996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
     version = "${BUILD_NUMBER}"
     docker_image = "$project:$version"
     awsurl = "https://996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
-    awsCred = 'ecr:us-east-1:awscredential'
+    awsCred = 'ecr:us-east-1:awscredentials'
 
   }
   agent any
@@ -17,7 +17,8 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build ('$docker_image')
+          dockerImage = docker.build  "$docker_image"
+
         }
       }
     }
