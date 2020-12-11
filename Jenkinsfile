@@ -1,7 +1,7 @@
 pipeline {
   environment {
     project = "996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
-    version = "${BUILD_NUMBER}"
+    version = "3.0"
     docker_image = "$project:$version"
     awsurl = "https://996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
     awsCred = 'ecr:us-east-1:awscredentials'
@@ -28,7 +28,7 @@ pipeline {
       steps{
         script {
           docker.withRegistry(awsurl,awsCred) {
-            docker.image(docker_image).push()
+            dockerImage.push()
           }
         }
       }
