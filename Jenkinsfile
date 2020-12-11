@@ -22,15 +22,6 @@ pipeline {
       }
     }
 
-    stage('Test Mkdocs' ) {
-                agent {
-                docker { image '996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image:$BUILD_NUMBER' }
-            }
-            steps {
-                sh 'mkdocs --version'
-            }
-        }
-
 
     stage('Push Image') {
       steps{
