@@ -6,6 +6,7 @@ pipeline {
     awsurl = "https://996189696326.dkr.ecr.us-east-1.amazonaws.com/jenkins-test-image"
     awsCred = 'ecr:us-east-1:awscredentials'
 
+
   }
   agent any
   stages {
