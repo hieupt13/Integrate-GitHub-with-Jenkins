@@ -15,6 +15,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
+    - name: Dynamically set DATE environment variable
+      run: echo "DATE=$($(date +%Y%m%d))" >> $GITHUB_ENV
+    - name: Test MY_DATE variable
+      run: echo ${{ env.DATE }}
+      
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -31,7 +36,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
-        IMAGE_TAG: ${{ secrets.DATE }}
+        IMAGE_TAG: ${{ env.DATE }}
       run: |
         # Build a docker container and push it to ECR 
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
