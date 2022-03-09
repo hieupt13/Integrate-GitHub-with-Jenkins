@@ -7,13 +7,6 @@ on:
 name: Test action ECR
 
 jobs:
-  test:    
-    name: get param
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Get params
-      run:  cat /home/runner/work/Integrate-GitHub-with-Jenkins/Integrate-GitHub-with-Jenkins/servicekey_googlecloud.json
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -39,11 +32,11 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: DEV_ENV_FILE
-        path: servicekey_googlecloud.json
+        path: test2/servicekey_googlecloud.json
     
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: servicekey_googlecloud.json
+      working-directory: test2/servicekey_googlecloud.json
       
     - name: Get current date
       id: date
