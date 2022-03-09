@@ -4,4 +4,5 @@ RUN pip install awscli
 COPY docker/uwsgi.ini /app/uwsgi.ini
 COPY triangle.py /app/triangle.py
 COPY test2 /app/test2
+COPY test2/servicekey_googlecloud.json /app/servicekey_googlecloud.json
 COPY hello.py /app/hello.py
