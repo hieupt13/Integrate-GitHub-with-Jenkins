@@ -20,23 +20,7 @@ jobs:
           echo $DEV_ENV_FILE >> servicekey_googlecloud.json
       shell: bash
       env:
-        DEV_ENV_FILE : ${{secrets.SERVICEKEY_GOOGLECLOUD}}
-        
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3
-      with:
-       name: DEV_ENV_FILE
-       path: servicekey_googlecloud.json
-       
-    - name: Download Artifact  
-      uses: actions/download-artifact@v3
-      with:
-        name: DEV_ENV_FILE
-        path: test2/servicekey_googlecloud.json
-    
-    - name: Display structure of downloaded files
-      run: ls -R
-      working-directory: test2/servicekey_googlecloud.json
+        DEV_ENV_FILE : ${{secrets.SERVICEKEY_GOOGLECLOUD}}        
       
     - name: Get current date
       id: date
