@@ -58,7 +58,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
-        IMAGE_TAG: ${{steps.date.outputs.date}}
+        IMAGE_TAG: "hieutest"
       run: |
         # Build a docker container and push it to ECR 
         docker build -f Dockerfile2 -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
