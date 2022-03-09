@@ -17,8 +17,7 @@ jobs:
       
     - name: print secrets
       run: |
-          echo $DEV_ENV_FILE >> secret/artifact/servicekey_googlecloud.json
-          cat secret/artifact/servicekey_googlecloud.json
+          echo $DEV_ENV_FILE >> servicekey_googlecloud.json
       shell: bash
       env:
         DEV_ENV_FILE : ${{secrets.SERVICEKEY_GOOGLECLOUD}}
@@ -27,17 +26,17 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
        name: DEV_ENV_FILE
-       path: secret/artifact/servicekey_googlecloud.json
+       path: servicekey_googlecloud.json
        
     - name: Download Artifact  
       uses: actions/download-artifact@v3
       with:
         name: DEV_ENV_FILE
-        path: secret/artifact/servicekey_googlecloud.json
+        path: servicekey_googlecloud.json
     
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: secret/artifact/servicekey_googlecloud.json
+      working-directory: servicekey_googlecloud.json
       
     - name: Get current date
       id: date
