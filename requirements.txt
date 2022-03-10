@@ -34,4 +34,3 @@ pyyaxml @ git+git://github.com/amisus/py-ya-xml.git@61e1222251173339bbf3b1220910
 nameparser==1.1.1
 Faker==12.1.0
 Unidecode==1.3.2
-urllib3[secure]==1.26.8
