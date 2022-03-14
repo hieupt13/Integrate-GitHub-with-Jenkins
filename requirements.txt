@@ -15,15 +15,15 @@ six==1.16.0
 apscheduler==3.7.0
 requests==2.27.1
 selenium==3.141.0
-urllib3==1.26.8
+urllib3==1.26.6
 shodan==1.26.1
 Pillow==9.0.0
 pyhibp==4.2.0
 minio==6.0.2
 pysolr==3.9.0
 validators==0.18.2
-pytineye @ git+git://github.com/TinEye/pytineye.git@1c66cee99812538afcc6fe52e8071f109d53105c
-future==0.16
+pytineye==3
+future==0.18.2
 pycryptodome==3.6.6
 weasyprint==52.1
 internetarchive
